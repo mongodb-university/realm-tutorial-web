@@ -10,14 +10,14 @@ export default function useTaskMutations(project) {
   };
 }
 
- // TODO: Add the GraphGL mutation for adding a task.
- const AddTaskMutation = gql``;
+// TODO: Add the GraphGL mutation for adding a task.
+const AddTaskMutation = gql``;
 
- // TODO: Add the GraphGL mutation for updating a task.
- const UpdateTaskMutation = gql``;
+// TODO: Add the GraphGL mutation for updating a task.
+const UpdateTaskMutation = gql``;
 
- // TODO: Add the GraphGL mutation for deleting a task.
- const DeleteTaskMutation = gql``;
+// TODO: Add the GraphGL mutation for deleting a task.
+const DeleteTaskMutation = gql``;
 
 const TaskFieldsFragment = gql`
   fragment TaskFields on Task {
@@ -48,8 +48,8 @@ function useAddTask(project) {
   });
 
   const addTask = async (task) => {
-       // TODO: Use the functions returned from the addTaskMutation hook to execute the
-       // mutation.
+      // TODO: Use the functions returned from the addTaskMutation hook to execute the
+      // mutation.
     });
     return addedTask;
   };
@@ -57,14 +57,16 @@ function useAddTask(project) {
   return addTask;
 }
 
-   // TODO: Use the functions returned from the updateTaskMutation to execute the
-   // mutation.
+function useUpdateTask(project) {
+  const [updateTaskMutation] = useMutation(UpdateTaskMutation);
+  // TODO: Use the functions returned from the updateTaskMutation to execute the
+  // mutation.
   return updateTask;
 }
 
 function useDeleteTask(project) {
   const [deleteTaskMutation] = useMutation(DeleteTaskMutation);
-   // TODO: Use the functions returned from the deleteTaskMutation to execute the
-   // mutation.
+  // TODO: Use the functions returned from the deleteTaskMutation to execute the
+  // mutation.
   return deleteTask;
 }

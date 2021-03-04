@@ -7,7 +7,6 @@ import {
   ApolloProvider,
 } from "@apollo/client";
 
-
 // Create an ApolloClient that connects to the provided Realm.App's GraphQL API
 const createRealmApolloClient = (app) => {
   const link = new HttpLink({

@@ -1,11 +1,5 @@
 import { useRealmApp } from "../RealmApp";
+import React from 'react';
 
-export default function useProjects() {
-  const app = useRealmApp();
-  if (!app.currentUser) {
-    throw new Error("Cannot list projects if there is no logged in user.");
-  }
-  // TODO: Retrieve the current user's projects and assign it to `projects`.
-  const projects;
-  return projects;
-}
+// TODO: Retrieve the current user's projects and assign it to `projects` 
+// with refresh when their project list is updated.

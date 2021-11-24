@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { useQuery } from "@apollo/client";
 import gql from "graphql-tag";
 
@@ -16,6 +16,6 @@ export function useAllTasksInProject(project) {
   const tasks = data?.tasks ?? [];
   return {
     tasks,
-    loading
+    loading,
   };
 }

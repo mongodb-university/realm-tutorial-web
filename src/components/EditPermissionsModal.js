@@ -15,7 +15,11 @@ function useTeamMembers() {
   const [teamMembers, setTeamMembers] = React.useState(null);
   const [newUserEmailError, setNewUserEmailError] = React.useState(null);
   const app = useRealmApp();
-  const { addTeamMember, removeTeamMember, getMyTeamMembers } = app.currentUser.functions;
+  const {
+    addTeamMember,
+    removeTeamMember,
+    getMyTeamMembers,
+  } = app.currentUser.functions;
   const updateTeamMembers = () => {
     getMyTeamMembers().then(setTeamMembers);
   };

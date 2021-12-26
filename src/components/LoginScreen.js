@@ -33,7 +33,7 @@ export default function LoginScreen() {
     setIsLoggingIn(true);
     setError((e) => ({ ...e, password: null }));
     try {
-      // TODO: Call the logIn() method and pass it the emailPassword credentials.
+      await app.logIn(Realm.Credentials.emailPassword(email, password));
     } catch (err) {
       handleAuthenticationError(err, setError);
     }
@@ -45,7 +45,7 @@ export default function LoginScreen() {
     if (isValidEmailAddress) {
       try {
         // Register the user and, if successful, log them in
-        // TODO: Create new emailPassword credentials by calling the registerUser() method.
+        await app.emailPasswordAuth.registerUser(email, password);
         return await handleLogin();
       } catch (err) {
         handleAuthenticationError(err, setError);
@@ -80,8 +80,8 @@ export default function LoginScreen() {
                 error.email
                   ? "error"
                   : validator.isEmail(email)
-                  ? "valid"
-                  : "none"
+                    ? "valid"
+                    : "none"
               }
               errorMessage={error.email}
             />

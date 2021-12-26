@@ -1,13 +1,15 @@
 import React from "react";
 import styled from "@emotion/styled";
 import StatusBadge from "./StatusBadge";
+import TaskID from "./TaskID";
 
 export default function TaskContent({ task }) {
   return (
     <TaskDescription>
       <TaskName>{task.name}</TaskName>
       <StatusBadge status={task.status} />
-    </TaskDescription>
+      <TaskID id={task._id} />
+    </TaskDescription >
   );
 }
 

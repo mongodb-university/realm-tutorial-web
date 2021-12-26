@@ -148,7 +148,7 @@ function TaskList({ currentProject }) {
 const List = styled.ul`
   list-style-type: none;
   padding-left: 0;
-  width: 400px;
+  width: 540px;
 `;
 const ListItem = styled.li`
   :not(:first-of-type) {

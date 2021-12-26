@@ -63,6 +63,8 @@ const SectionListItem = styled.li(
   (props) => css`
     padding: 8px 12px;
     border-radius: 8px;
+    border: 1px solid;
+    border-color: #00008b;
     background: ${props.isSelected && uiColors.green.light2};
     :hover {
       background: ${!props.isSelected && uiColors.gray.light1};

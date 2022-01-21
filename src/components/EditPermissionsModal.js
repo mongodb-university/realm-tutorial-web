@@ -33,12 +33,8 @@ export default function EditPermissionsModal({
   isEditingPermissions,
   setIsEditingPermissions,
 }) {
-  const {
-    teamMembers,
-    errorMessage,
-    addTeamMember,
-    removeTeamMember,
-  } = useTeamMembers();
+  const { teamMembers, errorMessage, addTeamMember, removeTeamMember } =
+    useTeamMembers();
   return (
     <Modal
       open={isEditingPermissions}
@@ -147,7 +143,7 @@ const List = styled.ul`
   margin: 0;
 `;
 const ListItem = styled.li(
-  (props) => css`
+  () => css`
     padding: 8px 12px;
     border-radius: 8px;
     :hover {

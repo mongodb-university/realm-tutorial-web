@@ -11,20 +11,31 @@ import TextInput from "@leafygreen-ui/text-input";
 import { uiColors } from "@leafygreen-ui/palette";
 import { useRealmApp } from "../RealmApp";
 
+// :code-block-start: useTeamMembers
 function useTeamMembers() {
   const [teamMembers, setTeamMembers] = React.useState(null);
   const [newUserEmailError, setNewUserEmailError] = React.useState(null);
   const app = useRealmApp();
+  // :state-start: final
   const { addTeamMember, removeTeamMember, getMyTeamMembers } =
     app.currentUser.functions;
+  // :state-end: :state-uncomment-start: start
+  // // TODO: Import the Realm functions: addTeamMember, removeTeamMember, and getMyTeamMembers
+  // :state-uncomment-end:
+  // :state-start: final
   const updateTeamMembers = () => {
     getMyTeamMembers().then(setTeamMembers);
   };
+  // :state-end: :state-uncomment-start: start
+  // // TODO: Implement the function updateTeamMembers so that it calls getMyTeamMembers and updates
+  // // the team variable with the current team members.
+  // :state-uncomment-end:
   // display team members on load
   React.useEffect(updateTeamMembers, []);
   return {
     teamMembers,
     errorMessage: newUserEmailError,
+    // :state-start: final
     addTeamMember: async (email) => {
       const { error } = await addTeamMember(email);
       if (error) {
@@ -34,12 +45,21 @@ function useTeamMembers() {
         updateTeamMembers();
       }
     },
+    // :state-end: :state-uncomment-start: start
+    // // TODO: Call the addTeamMember() function and return updateTeamMembers if
+    // // addTeamMember() was successful.
+    // :state-uncomment-end:
+    // :state-start: final
     removeTeamMember: async (email) => {
       await removeTeamMember(email);
       updateTeamMembers();
     },
+    // :state-end: :state-uncomment-start: start
+    // // TODO: Call the removeTeamMember()
+    // :state-uncomment-end:
   };
 }
+// :code-block-end:
 
 export default function EditPermissionsModal({
   isEditingPermissions,

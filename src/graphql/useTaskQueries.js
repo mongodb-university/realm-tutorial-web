@@ -2,6 +2,8 @@ import React from "react";
 import { useQuery } from "@apollo/client";
 import gql from "graphql-tag";
 
+// :code-block-start: GetAllTasksQuery
+// :state-start: final
 const GetAllTasksQuery = gql`
   query GetAllTasksForProject($partition: String!) {
     tasks(query: { _partition: $partition }) {
@@ -11,8 +13,16 @@ const GetAllTasksQuery = gql`
     }
   }
 `;
+// :state-end:
+// :state-uncomment-start: start
+// // TODO: Add the GraphGL query for fetching all tasks.
+// const GetAllTasksQuery = gql``;
+// :state-uncomment-end:
+// :code-block-end:
 
+// :code-block-start: useAllTasksInProject
 export function useAllTasksInProject(project) {
+  // :state-start: final
   const { data, loading, error, startPolling, stopPolling } = useQuery(
     GetAllTasksQuery,
     {
@@ -27,6 +37,10 @@ export function useAllTasksInProject(project) {
     // stop polling server for data when component unmounts
     return () => stopPolling();
   }, [startPolling, stopPolling]);
+  // :state-end:
+  // :state-uncomment-start: start
+  // // TODO: Use GetAllTasksQuery to fetch the tasks for the project every 1000ms
+  // :state-uncomment-end:
   if (error) {
     throw new Error(`Failed to fetch tasks: ${error.message}`);
   }
@@ -39,3 +53,4 @@ export function useAllTasksInProject(project) {
     loading,
   };
 }
+// :code-block-end:

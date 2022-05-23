@@ -13,8 +13,13 @@ export const useRealmApp = () => {
   return app;
 };
 
+// :code-block-start: realmAppProvider
 export const RealmAppProvider = ({ appId, children }) => {
-  // TODO: Wrap the Realm.App object with React state.
+  // :state-start: final
+  const [app, setApp] = React.useState(new Realm.App(appId));
+  // :state-end: :state-uncomment-start: start
+  // // TODO: Wrap the Realm.App object with React state.
+  // :state-uncomment-end:
   React.useEffect(() => {
     setApp(new Realm.App(appId));
   }, [appId]);
@@ -22,16 +27,28 @@ export const RealmAppProvider = ({ appId, children }) => {
   // Wrap the Realm.App object's user state with React state
   const [currentUser, setCurrentUser] = React.useState(app.currentUser);
   async function logIn(credentials) {
-    // TODO: Call the logIn() method with the given credentials
+    // :state-start: final
+    await app.logIn(credentials);
+    // :state-end: :state-uncomment-start: start
+    // // TODO: Call the logIn() method with the given credentials
+    // :state-uncomment-end:
     // If successful, app.currentUser is the user that just logged in
     setCurrentUser(app.currentUser);
   }
   async function logOut() {
     // Log out the currently active user
-    // TODO: Call the logOut() method on the current user.
+    // :state-start: final
+    await app.currentUser?.logOut();
+    // :state-end: :state-uncomment-start: start
+    // // TODO: Call the logOut() method on the current user.
+    // :state-uncomment-end:
     // If another user was logged in too, they're now the current user.
     // Otherwise, app.currentUser is null.
-    // TODO: Call the setCurrentUser() method on the app's current user.
+    // :state-start: final
+    setCurrentUser(app.currentUser);
+    // :state-end: :state-uncomment-start: start
+    // // TODO: Call the setCurrentUser() method on the app's current user.
+    // :state-uncomment-end:
   }
 
   const wrapped = { ...app, currentUser, logIn, logOut };
@@ -42,3 +59,4 @@ export const RealmAppProvider = ({ appId, children }) => {
     </RealmAppContext.Provider>
   );
 };
+// :code-block-end:

@@ -4,13 +4,23 @@ import TaskApp from "./TaskApp";
 import RealmApolloProvider from "./graphql/RealmApolloProvider";
 import { useRealmApp, RealmAppProvider } from "./RealmApp";
 
-export const APP_ID = "<your Realm app ID here>";
+// :code-block-start: appID
+// :replace-start: {
+//   "terms": {
+//     "tasktracker-qczfq": "<your Realm app ID here>"
+//   }
+// }
+export const APP_ID = "tasktracker-qczfq";
+// :replace-end:
+// :code-block-end:
 
+// :code-block-start: requireLoggedInUser
 const RequireLoggedInUser = ({ children }) => {
   // Only render children if there is a logged in user.
   const app = useRealmApp();
   return app.currentUser ? children : <LoginScreen />;
 };
+// :code-block-end:
 
 export default function App() {
   return (

@@ -10,8 +10,6 @@ export default function useTaskMutations(project) {
   };
 }
 
-// :code-block-start: addTaskMutation
-// :state-start: final
 const AddTaskMutation = gql`
   mutation AddTask($task: TaskInsertInput!) {
     addedTask: insertOneTask(data: $task) {
@@ -22,14 +20,7 @@ const AddTaskMutation = gql`
     }
   }
 `;
-// :state-end: :state-uncomment-start: start
-// // TODO: Add the GraphGL mutation for adding a task.
-// const AddTaskMutation = gql``;
-// :state-uncomment-end:
-// :code-block-end:
 
-// :code-block-start: updateTaskMutation
-// :state-start: final
 const UpdateTaskMutation = gql`
   mutation UpdateTask($taskId: ObjectId!, $updates: TaskUpdateInput!) {
     updatedTask: updateOneTask(query: { _id: $taskId }, set: $updates) {
@@ -40,14 +31,7 @@ const UpdateTaskMutation = gql`
     }
   }
 `;
-// :state-end: :state-uncomment-start: start
-// // TODO: Add the GraphGL mutation for updating a task.
-// const UpdateTaskMutation = gql``;
-// :state-uncomment-end:
-// :code-block-end:
 
-// :code-block-start: deleteTaskMutation
-// :state-start: final
 const DeleteTaskMutation = gql`
   mutation DeleteTask($taskId: ObjectId!) {
     deletedTask: deleteOneTask(query: { _id: taskId }) {
@@ -58,11 +42,6 @@ const DeleteTaskMutation = gql`
     }
   }
 `;
-// :state-end: :state-uncomment-start: start
-// // TODO: Add the GraphGL mutation for deleting a task.
-// const DeleteTaskMutation = gql``;
-// :state-uncomment-end:
-// :code-block-end:
 
 const TaskFieldsFragment = gql`
   fragment TaskFields on Task {
@@ -73,7 +52,6 @@ const TaskFieldsFragment = gql`
   }
 `;
 
-// :code-block-start: useAddTask
 function useAddTask(project) {
   const [addTaskMutation] = useMutation(AddTaskMutation, {
     // Manually save added Tasks into the Apollo cache so that Task queries automatically update
@@ -94,7 +72,6 @@ function useAddTask(project) {
   });
 
   const addTask = async (task) => {
-    // :state-start: final
     const { addedTask } = await addTaskMutation({
       variables: {
         task: {
@@ -104,50 +81,31 @@ function useAddTask(project) {
           ...task,
         },
       },
-      // :state-end: :state-uncomment-start: start
-      // // TODO: Use the functions returned from the addTaskMutation hook to execute the
-      // // mutation.
-      // :state-uncomment-end:
     });
     return addedTask;
   };
 
   return addTask;
 }
-// :code-block-end:
 
-// :code-block-start: useUpdateTask
 function useUpdateTask(project) {
   const [updateTaskMutation] = useMutation(UpdateTaskMutation);
-  // :state-start: final
   const updateTask = async (task, updates) => {
     const { updatedTask } = await updateTaskMutation({
       variables: { taskId: task._id, updates },
     });
     return updatedTask;
   };
-  // :state-end: :state-uncomment-start: start
-  // // TODO: Use the functions returned from the updateTaskMutation to execute the
-  // // mutation.
-  // :state-uncomment-end:
   return updateTask;
 }
-// :code-block-end:
 
-// :code-block-start: useDeleteTask
 function useDeleteTask(project) {
   const [deleteTaskMutation] = useMutation(DeleteTaskMutation);
-  // :state-start: final
   const deleteTask = async (task) => {
     const { deletedTask } = await deleteTaskMutation({
       variables: { taskId: task._id },
     });
     return deletedTask;
   };
-  // :state-end: :state-uncomment-start: start
-  // // TODO: Use the functions returned from the deleteTaskMutation to execute the
-  // // mutation.
-  // :state-uncomment-end:
   return deleteTask;
 }
-// :code-block-end:

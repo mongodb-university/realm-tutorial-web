@@ -1,8 +1,6 @@
 import { useRealmApp } from "../RealmApp";
 import React from "react";
 
-// :code-block-start: useProjects
-// :state-start: final
 function setProjectsFromChange(change, setProjects) {
   const {
     fullDocument: { memberOf },
@@ -37,9 +35,3 @@ export default function useProjects() {
 
   return projects;
 }
-// :state-end:
-// :state-uncomment-start: start
-// // TODO: Retrieve the current user's projects and assign it to `projects`
-// // with refresh when their project list is updated.
-// :state-uncomment-end:
-// :code-block-end:
